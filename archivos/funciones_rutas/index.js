@@ -9,6 +9,7 @@ const pdf = require("pdf-parse-new");
 const session = require('express-session');
 const crypto = require("crypto");
 
+
 //MODELOS IMPORTADOS
 const usuarioEnUsoDB = require("../modelos/usuarioEnUso");
 const usuariosDB = require("../modelos/usuarios");
@@ -43,8 +44,9 @@ var cargos = []
         const upload = multer({ storage });
 
 
-//Middleware para validar un unico logeo por Usuario
+//MIDDLEWARE
 
+// Para validar un unico logeo por Usuario
 async function validarSesion(req, res, next){
     console.log("ENTRE AL MIDDLEWARE");
     if(!req.session.usuario){
@@ -71,14 +73,11 @@ router.get("/", (req, res, next) =>{
 })
 
 router.get("/home", validarSesion, async(req, res, next) =>{
-    console.log("ENTRE A HOME");
      if(!req.session.usuario){
         return res.redirect('/');
     }
     else{
         res.render("home.pug",{
-            //h1 : usuarioNavegacion.nombre,
-            //accesos: Object.keys(usuarioNavegacion.accesos[0]).splice(1),
             h1: req.session.usuario.nombre,
             accesos: Object.keys(req.session.usuario.accesos[0]).splice(1),
         })
@@ -87,11 +86,6 @@ router.get("/home", validarSesion, async(req, res, next) =>{
 })
 
 router.get("/procesos", validarSesion, async(req, res, next) =>{
-    /*if(usuarioNavegacion == ""){
-        res.render("index.pug")
-    }*/
-   console.log("procesos")
-   console.log(Object.keys(req.session.usuario.accesos[0]).splice(1))
     if(!req.session.usuario){
         return res.redirect('/');
     }

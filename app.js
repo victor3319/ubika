@@ -34,7 +34,7 @@ app.set("view engine", "pug")
 //express para leer json
 
 app.use(morgan("dev"))
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 //Para Adminitrar Seciones de Usuarios Distintas
@@ -68,7 +68,7 @@ app.set("bases", path.join(__dirname,"./archivos/bases"))
 
 
 //Parsear Datos de Formulario
-app.use(express.urlencoded({ extended: true }));
+//app.use(express.urlencoded({ extended: true }));
 
 //Escucha del Servidor
 app.listen(PORT, () => {

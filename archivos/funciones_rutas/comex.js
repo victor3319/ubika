@@ -23,16 +23,19 @@ var listaResponsabilidades = []
 var cargos = []
 
 //Configurar almacenamiento
-        const storage = multer.diskStorage({
-            destination: 'uploads/recibos',
-            filename: (req, file, cb) => {
-                //const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-                const ext = path.extname(file.originalname);
-                cb(null, file.fieldname + '-' + ext);
-            }
-        });
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, "../uploads/recibos")); // carpeta donde guardar
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    const uniqueName = Date.now() + "-" + file.fieldname + ext;
+    cb(null, uniqueName);
+  }
+});
 
-        const upload = multer({ storage });
+// Inicializar multer
+const upload = multer({ storage });
 
 
 //Middleware para validar un unico logeo por Usuario
@@ -53,17 +56,17 @@ async function validarSesion(req, res, next){
 
 //Ruta de COMEX
 
-router.post("/comex", validarSesion, async (req, res)=>{
+router.post("/comex", validarSesion, upload.single("archivo"), async (req, res)=>{
     if(!req.session.usuario){
         return res.redirect('/');
     }
     else{
-        var boton = req.body
+        var boton = req.body.boton
         console.log(boton)
         res.render("procesosEspecificos.pug",{
             h1: req.session.usuario.nombre,
             accesos: Object.keys(req.session.usuario.accesos[0]).splice(1),
-            proceso : "planificacion"
+            proceso : boton
         })
     }
 })

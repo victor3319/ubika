@@ -1,46 +1,164 @@
 doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title ROWA
-        link(rel="stylesheet", href="css/style.css")
-    header 
-    body.granback 
-        
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    title UBIKA
+    link(rel="stylesheet", href="css/style.css")
+    link(rel="stylesheet", href="https://unpkg.com/leaflet/dist/leaflet.css")
+    script(src="https://unpkg.com/leaflet/dist/leaflet.js")
+  body
+    header.header
+      h1 UBIKA 
+      p Todo en un solo lugar
 
-        div.container
-            div
-                h1 Hola
-                img.imgg(src="img/rowa.JPG", alt="")
-                h3 Bienvenido a nuestro espacio de trabajo
-                h2 Servicios
-                form(method="post" action="/externo")
-                    button.hm(name="boton" value="fichaje") Fichar
-                    button.hm(name="boton" value="solicitud") Solicitud de Empleo
-            div
-                h1 Si eres parte del Equipo Ingresa tus credenciales
-                form(method="post" action="/new-entry")
-                    div.cuadro
-                        label Nombre
-                        input.input(type="", name="nombre")
-                        label Correo
-                        input.input(type="", name="correo")
-                        label Password
-                        input.input(type="password", name="password")
-                        button.boton-ok(name="boton" value="ingresar") Ingresar
-                        button.boton-nook(name="boton" value="olvidar") No Recuerdo
-                    
-            dialog.ventana(name="respuesta" open=mostrar)
-                h1 Error en Datos
-                p Algunos datos ingresados son erroneos o no te encuentras registrado o autorizado
-                a(href="/")
-                    input.boton-nook(type="button", value="cerrar")
+    // Barra de menú horizontal
+    nav.menu
+      ul
+        li.busqueda
+          form(action="/buscar" method="get")
+            input(type="text" name="q" placeholder="Buscar...")
+            button(type="submit") 🔍
+            i.fa-solid.fa-search
+        li.iconos
+          a(href="#perfil") 👤
+          a(href="#compras") 🛒
+          a(href="#favoritos") ❤️
+          a(href="#notificaciones") 🔔
 
-            dialog.ventana(name="respuesta" open=olvidar)
-                h1 Si no recuerdas
-                p Sus datos de ingreso son su nombre su correo registrado y como pasword su fecha de nacimiento sin caracteres especiales, en caso de no recordarlo comuniquese con el Administrador
-                a(href="/")
-                    input.boton-nook(type="button", value="Cerrar")
-            
-                    
+    .contenedor
+      .tarjeta
+        .imagen-container
+          img(src="img/victor1.jpg" alt="Consultoría Empresarial")
+          button.favorito ♥
+        .contenido
+          h3 Consultoría Empresarial
+            span.puntuacion 4.5 
+            span.estrella ★
+          p Optimización de procesos y estrategia.
+
+      .tarjeta
+        .contenido
+          h3 Desarrollo Web
+          p y programación de sitios modernos.
+          
+
+      .tarjeta
+        .contenido
+          h3 Gestión de RRHH
+          p Selección, capacitación y clima laboral.
+
+      .tarjeta
+        .contenido
+          h3 Desarrollo Web
+          p y programación de sitios modernos.
+
+      .tarjeta
+        .contenido
+          h3 Desarrollo Web
+          p y programación de sitios modernos.
+
+      .tarjeta
+        .contenido
+          h3 Desarrollo Web
+          p y programación de sitios modernos.
+
+      .tarjeta
+        .imagen-container
+          img(src="img/victor1.jpg" alt="Consultoría Empresarial")
+          button.favorito ♥
+        .contenido
+          h3 Consultoría Empresarial
+            span.puntuacion 4.5 
+            span.estrella ★
+          p Optimización de procesos y estrategia.
+
+      .tarjeta
+        .contenido
+          h3 Desarrollo Web
+          p y programación de sitios modernos.
+
+      .tarjeta
+        .contenido
+          h3 Desarrollo Web
+          p y programación de sitios modernos.
+      
+      .tarjeta
+        .contenido
+          h3 Desarrollo Web
+          p y programación de sitios modernos.
+
+      .tarjeta
+        .imagen-container
+          img(src="img/victor1.jpg" alt="Consultoría Empresarial")
+          button.favorito ♥
+        .contenido
+          h3 Consultoría Empresarial
+            span.puntuacion 4.5 
+            span.estrella ★
+          p Optimización de procesos y estrategia.
+          
+
+    // Modal global (fuera de las tarjetas)
+    .info
+      .modal-superior
+        .seccion-izquierda
+          #mapa(style="height:100%; width:100%")
+        .seccion-derecha
+          h4 Información
+          p CABA
+          p Información adicional aquí
+      .comentarios Comentarios
+      .modal-inferior
+        .comentario
+          p Aquí irán los comentarios con sus puntuaciones
+        .comentario
+          p Aquí irán los comentarios con sus puntuaciones
+        .comentario
+          p Aquí irán los comentarios con sus puntuaciones
+        .comentario
+          p Aquí irán los comentarios con sus puntuaciones
+        .comentario
+          p Aquí irán los comentarios con sus puntuaciones
+      .botones
+        button Contactar
+        button#btn-cerrar Cerrar
+      
+    footer.footer
+      p &copy; 2026 Servicios Profesionales | Todos los derechos reservados
+
+script. 
+  document.querySelectorAll('.tarjeta').forEach(tarjeta => {
+    tarjeta.addEventListener('click', () => {    
+      //Ejecución de la ventana Modal
+      const modal = document.querySelector('.info');
+      modal.style.display = "flex";
+
+      // Si ya existe un mapa, lo eliminamos para reiniciar
+      if (mapa) {
+        mapa.remove();
+      }
+
+      // Inicializar mapa
+      var mapa = L.map('mapa').setView([-34.6037, -58.3816], 13);
+    
+      // Capa base (OpenStreetMap)
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(mapa);
+
+      // Dibujar un círculo en lugar de un marcador
+      L.circle([-34.6037, -58.3816], {
+        radius: 1000, // radio en metros (ejemplo: 1000m ≈ 1km)
+        color: 'blue',
+        fillColor: '#3f83f8',
+        fillOpacity: 0.3
+      }).addTo(mapa)
+        .bindPopup('Región aproximada')
+        .openPopup();
+      
+    });
+  });
+
+  document.getElementById("btn-cerrar").addEventListener('click', () => {
+    document.querySelector('.info').style.display = "none";
+  });
