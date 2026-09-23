@@ -1,0 +1,43 @@
+const mongoose = require("mongoose");
+
+//ESQUEMA
+const tarjetasEsquema = new mongoose.Schema({
+    imagen: {
+        type:String,
+        required: true
+    },
+    lugar_Negocio:{
+        type:String,
+        required: true
+    },
+    puntosTotales:{
+        type:String,
+        required: true
+    },
+    eslogan_Caracteristica:{
+        type:String,
+        required: true
+    },
+    contacto: {
+        type: mongoose.Schema.Types.Mixed
+    },
+    geo_localizacion: {
+       type: mongoose.Schema.Types.Mixed 
+    },
+    ciudad: {
+        type: mongoose.Schema.Types.Mixed 
+    },
+    descripcion: {
+        type:String,
+        required: true
+    },
+    comentarios: [{
+            texto : { type: mongoose.Schema.Types.Mixed },
+            puntos : {type: mongoose.Schema.Types.Mixed},
+            fechaComentario : {type: Date, default: Date.now}
+        }]
+})
+
+const tajetasModelo = new mongoose.model("tarjetas", tarjetasEsquema)
+
+module.exports = tarjetasModelo

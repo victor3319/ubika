@@ -6,7 +6,15 @@ const usuariosEsquema = new mongoose.Schema({
         type:String,
         required: true
     },
-    correo: {
+    apellido:{
+        type:String,
+        required: true
+    },
+    preferenciaContacto: {
+        type:String,
+        required: true
+    },
+    contacto: {
         type:String,
         required: true
     },
@@ -15,14 +23,17 @@ const usuariosEsquema = new mongoose.Schema({
         required: true
     },
     tipo: {
-        type:String,
-        required: true
+        type: mongoose.Schema.Types.Mixed
     },
     accesos: [{
-        ADP : {type: mongoose.Schema.Types.Mixed},
-        EYD : {type: mongoose.Schema.Types.Mixed}
+        publicador : {type: mongoose.Schema.Types.Mixed},
+        marketing : {type: mongoose.Schema.Types.Mixed},
+        desarrollo : {type: mongoose.Schema.Types.Mixed}
     }],
     sessionToken:{
+        type: mongoose.Schema.Types.Mixed
+    },
+    comunicaciones :{
         type: mongoose.Schema.Types.Mixed
     }
 })

@@ -11,18 +11,17 @@ const { basename } = require("path");
 
 function validacionUsuario(datos, usuarios){
     const existe = usuarios.some(obj =>
-        obj.nombre === datos.nombre &&
-        obj.correo === datos.correo &&
+        obj.contacto === datos.contacto &&
         obj.password === datos.password
     );
     var datosIngreso = []
-    datosIngreso.push(existe, datos.nombre, datos.correo, datos.password)
+    datosIngreso.push(existe, datos.contacto, datos.password)
     return datosIngreso
 }
 
 function validarRegistro(datos,registros){
     const existe = registros.some(obj =>
-        obj.correo === datos.correo
+        obj.contacto === datos.conctacto
     );
     return existe
 }
@@ -34,6 +33,7 @@ function mostrar(){
     mostrar = "open"
     return mostrar
 }
+
 
 //CONVERTIR DE ARCHIVO A BASE64
 

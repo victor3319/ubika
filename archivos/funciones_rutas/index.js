@@ -13,8 +13,8 @@ const crypto = require("crypto");
 //MODELOS IMPORTADOS
 const usuarioEnUsoDB = require("../modelos/usuarioEnUso");
 const usuariosDB = require("../modelos/usuarios");
-const solicitudesEmpleoDB = require("../modelos/solicitudesEmpleo")
-const busquedasDB = require("../modelos/busquedas")
+//const solicitudesEmpleoDB = require("../modelos/solicitudesEmpleo")
+//const busquedasDB = require("../modelos/busquedas")
 const console = require("console");
 const { ClientEncryption } = require("mongodb");
 const { isArray } = require("util");
@@ -65,11 +65,8 @@ async function validarSesion(req, res, next){
 //RUTAS DEL PROGRAMA
 
 router.get("/", (req, res, next) =>{
-    usuarioNavegacion = ""
     res.render("index.pug")
     next()
-    usuario = []
-    return usuario
 })
 
 router.get("/home", validarSesion, async(req, res, next) =>{
@@ -107,13 +104,15 @@ router.post("/new-entry", async (req, res)=>{
     
     var datos = req.body
     var boton = req.body.boton
+
     
     if(boton == "olvidar"){
         res.render("index.pug", {olvidar : js.mostrar()})
     }else{
         var validacion = js.validacionUsuario(datos, usuarios);
+        console.log(validacion)
         if(validacion[0] == true){
-            var usuariobase = (usuarios.filter(usuario => usuario.correo === validacion[2]))[0]
+            var usuariobase = (usuarios.filter(usuario => usuario.contacto === validacion[2]))[0]
             const sessionToken = crypto.randomUUID();
             await usuariosDB.updateOne(
                 { _id: usuariobase._id },

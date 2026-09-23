@@ -101,7 +101,7 @@ button.favorito {
 
 /* Ventana emergente */
 .info {
-  display: flex;
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -113,7 +113,7 @@ button.favorito {
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
-  z-index: 9999;
+  z-index: 9998;
   border-radius: 10px;
 }
 
@@ -173,7 +173,7 @@ button.favorito {
 }
 
 .info button {
-    margin-top: 20px;
+    margin: 10px;
     background: white;
     color: #004aad;
     border: none;
@@ -187,6 +187,13 @@ button.favorito {
   border-radius: 5px;
   margin: 5px;
 }
+
+.puntos {
+  color: gold;
+  margin-left: 5px;
+}
+
+
 
 /*Para el Menu*/
 
@@ -209,28 +216,12 @@ button.favorito {
   margin-left: auto; /* empuja los iconos a la derecha */
 }
 
-.menu .iconos a {
-  color: #333;
-  font-size: 20px;
-  margin-left: 15px;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.menu .iconos a:hover {
-  color: #ff9800;
-}
-
 .menu a {
   color: #fff;
   font-size: 20px;
   margin-left: 15px;
   text-decoration: none;
   transition: color 0.3s;
-}
-
-.menu a:hover {
-  color: #ff9800;
 }
 
 /* Estilo para el input de búsqueda del menú */
@@ -247,7 +238,7 @@ button.favorito {
 
 .menu .busqueda input {
   padding: 5px 10px;
-  border-radius: 20px;
+  border-radius: 6px;
   border: none;
   outline: none;
 }
@@ -263,4 +254,111 @@ button.favorito {
 
 .menu .busqueda button:hover {
   color: #ff9800;
+}
+
+
+/*Modal doble pestaña*/
+.modal {
+display: none;
+position: fixed;
+top: 10%;
+left: 35%;
+z-index: 9999;
+border-radius: 10px;
+}
+
+.modal-contenido {
+position: relative;
+width: 420px;
+max-width: 90%;
+background: white;
+border-radius: 12px;
+padding: 25px;
+box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+
+}
+
+/* BOTON CERRAR */
+
+.btn-cerrar {
+position: absolute;
+right: 15px;
+top: 10px;
+border: none;
+background: transparent;
+font-size: 25px;
+cursor: pointer;
+}
+
+/* PESTAÑAS */
+
+.modal-tabs {
+display: flex;
+margin-bottom: 25px;
+border-bottom: 1px solid #ddd;
+}
+
+.tab {
+flex: 1;
+padding: 12px;
+background: transparent;
+border: none;
+cursor: pointer;
+font-size: 16px;
+}
+
+.tab.activa {
+color: #007bff;
+border-bottom: 3px solid #007bff;
+}
+
+/* CONTENIDO */
+
+.contenido-tab {
+display: none;
+}
+
+.contenido-tab.activo {
+display: block;
+}
+
+/* FORMULARIO */
+
+.form {
+max-height: 60vh;
+overflow-y: auto;
+}
+
+.form form {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+
+input,
+select {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 6px;
+}
+
+.aceptar{
+display: flex;
+gap: 8px;
+}
+
+.btn-principal {
+margin-top: 15px;
+padding: 12px;
+border: none;
+border-radius: 6px;
+
+background: #007bff;
+color: white;
+cursor: pointer;
+}
+
+.btn-principal:hover {
+background: #00056b;
 }

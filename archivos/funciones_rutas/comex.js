@@ -12,8 +12,8 @@ const crypto = require("crypto");
 //MODELOS IMPORTADOS
 const usuarioEnUsoDB = require("../modelos/usuarioEnUso");
 const usuariosDB = require("../modelos/usuarios");
-const solicitudesEmpleoDB = require("../modelos/solicitudesEmpleo")
-const busquedasDB = require("../modelos/busquedas")
+//const solicitudesEmpleoDB = require("../modelos/solicitudesEmpleo")
+//const busquedasDB = require("../modelos/busquedas")
 const console = require("console");
 const { ClientEncryption } = require("mongodb");
 const { isArray } = require("util");

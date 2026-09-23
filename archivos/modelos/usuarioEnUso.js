@@ -6,7 +6,7 @@ const usuarioEnUsoEsquema = new mongoose.Schema({
         type:String,
         required: true
     },
-    correo: {
+    contacto: {
         type:String,
         required: true
     },
@@ -19,9 +19,10 @@ const usuarioEnUsoEsquema = new mongoose.Schema({
         required: true
     },
     accesos: [{
-        ADP : {type: mongoose.Schema.Types.Mixed},
-        EYD : {type: mongoose.Schema.Types.Mixed}
-    }]
+            publicador : {type: mongoose.Schema.Types.Mixed},
+            marketin : {type: mongoose.Schema.Types.Mixed},
+            desarrollo : {type: mongoose.Schema.Types.Mixed}
+        }]
 })
 
 const usuariorEnUsoModelo = new mongoose.model("usuarioEnUso", usuarioEnUsoEsquema)
