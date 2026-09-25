@@ -18,6 +18,7 @@ const usuariosDB = require("../modelos/usuarios");
 const console = require("console");
 const { ClientEncryption } = require("mongodb");
 const { isArray } = require("util");
+const { abrirModal } = require("./funciones_navegador");
 
 //leer pdf
 /*const dataBuffer = fs.readFileSync('./uploads/recibos/archivo-.pdf');
@@ -110,7 +111,6 @@ router.post("/new-entry", async (req, res)=>{
         res.render("index.pug", {olvidar : js.mostrar()})
     }else{
         var validacion = js.validacionUsuario(datos, usuarios);
-        console.log(validacion)
         if(validacion[0] == true){
             var usuariobase = (usuarios.filter(usuario => usuario.contacto === validacion[2]))[0]
             const sessionToken = crypto.randomUUID();
@@ -135,10 +135,44 @@ router.post("/new-entry", async (req, res)=>{
             });
         }
         else{
-            res.render("index.pug", {mostrar : js.mostrar()})
+            res.render("index.pug", {
+                warnnig : js.mostrar(),
+                mensaje : "Algunos datos ingresados son erroneos o no te encuentras registrado o autorizado"
+            })
         }       
     }
 })
+
+router.post("/registrar", upload.none(), async (req, res)=>{   
+    const usuarios = await usuariosDB.find()
+    var datos = req.body
+    var validacion = js.validacionUsuario(datos, usuarios);
+    console.log(datos)
+    const {nombre, apellido, preferencia, contacto, password} = req.body;
+
+    if(validacion == true){
+        res.render("index.pug", {
+                warnnig : js.mostrar(),
+                mensaje : "El registro ya existen"
+            })
+    }else if(
+        //VALIDADION DE DATOS OBLIGATORIOS
+        nombre =="" || 
+        apellido =="" ||
+        preferencia =="" || 
+        contacto =="" || 
+        password ==""
+    ){
+        return res.json({
+            modal : "flex",
+            warning : "open",
+            mensaje : "Todos los datos son obligatorios, debe llenarlos"
+        });
+    }
+    
+})
+    
+
 
 
 //RUTAS ADP

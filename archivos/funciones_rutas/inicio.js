@@ -1,8 +1,10 @@
 import { 
   abrirModal,
   cargarMapa,
+  cerrardialog,
   cerrarModal,
-  crearEstrellas
+  crearEstrellas,
+  mostrarModal
  } from "./funciones_navegador.js";
 
 // MOSTRAR MODALES
@@ -10,6 +12,34 @@ import {
 //Abrir .modal desde #contactar y #usuario
 abrirModal("usuario", ".modal")
 abrirModal("contactar", ".modal")
+
+var formulario = document.getElementById("registrar")
+var dialog = document.getElementById("dialog")
+var textDialog = document.getElementById("h1-dialog")
+
+formulario.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const datos = new FormData(formulario);
+  console.log(Object.fromEntries(datos.entries()));
+  try{
+    var respuesta = await fetch("/registrar",{
+      method: "POST",
+      body: datos
+    })
+    
+    var resultado = await respuesta.json()
+    
+      if (resultado.warning === "open") {
+        dialog.showModal();
+        textDialog.textContent = resultado.mensaje
+      }
+      
+    }catch{
+      console.error("ERROR:", error);
+    }
+})
+
+
 
 
 //Abrir .info
@@ -26,6 +56,8 @@ document.getElementById("tarjeta1").addEventListener("click",()=>{
 cerrarModal("btn-cerrar-info", ".info")
 // Cerrar .modal con X
 cerrarModal("x", ".modal")
+cerrardialog("boton-dialog", dialog)
+
 
 
 //Navegar por .modal
@@ -48,6 +80,4 @@ tabs.forEach(tab => {
     // Mostrar ese contenido
     document.getElementById(id).classList.add("activo");
   });
-});
-
-  
+});  

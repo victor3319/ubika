@@ -6,16 +6,21 @@ function abrirModal(id, claseModal) {
   const boton = document.getElementById(id);
   const modal = document.querySelector(claseModal);
   boton.addEventListener("click", (e) => {
-    e.stopPropagation();
+    //e.stopPropagation();
     modal.style.display = "flex";
     //modal.style.left = e.clientX + "px";
     //modal.style.top = e.clientY + "px";
   });
-  document.addEventListener("click", (e) => {
+  /*document.addEventListener("click", (e) => {
     if (modal.style.display === "flex" &&!modal.contains(e.target)){
       modal.style.display = "none";
     }
-  });
+  });*/
+}
+
+function mostrarModal(claseModal, estado) {
+    const modal = document.querySelector(claseModal);
+    modal.style.display = estado;
 }
 
 //Cerrar Modales
@@ -23,6 +28,12 @@ function abrirModal(id, claseModal) {
 function cerrarModal(idBoton, claseModal) {
     document.getElementById(idBoton).addEventListener("click", () => {
       document.querySelector(claseModal).style.display = "none";
+    });
+}
+
+function cerrardialog(idBoton, dialog) {
+    document.getElementById(idBoton).addEventListener("click", () => {
+      dialog.close()
     });
 }
 
@@ -72,5 +83,7 @@ abrirModal,
 cerrarModal,
 cargarMapa,
 crearEstrellas,
-swichClases
+swichClases,
+mostrarModal,
+cerrardialog
 };

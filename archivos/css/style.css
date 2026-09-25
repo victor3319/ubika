@@ -362,3 +362,18 @@ cursor: pointer;
 .btn-principal:hover {
 background: #00056b;
 }
+
+.ventana{
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column;
+  padding: 20px;
+  width: 90%;          /* ancho fijo */
+  max-width: 600px;
+  max-height: 70vh;      /* altura máxima: 70% de la ventana */
+  overflow-y: auto;      /* scroll vertical si se excede */
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}

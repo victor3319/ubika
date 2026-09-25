@@ -88,13 +88,13 @@ html(lang="es")
         .contenido-tab#registro
           h2 Crear cuenta
           .form
-            form
+            form(name="registrar" id="registrar")
               label Nombre
               input(type="text" name="nombre" placeholder="Nombre")
               label Apellido
               input(type="text" name="apellido" placeholder="Apellido")
               label Preferencia de contacto
-              select(name="contacto" placeholder="Seleccionar")
+              select(name="preferencia" placeholder="Seleccionar")
                 option(value="" disabled selected) Seleccione una opción 
                 option(value="email") Correo
                 option(value="whatsapp") WhatsApp
@@ -112,16 +112,15 @@ html(lang="es")
           .form
             form(method="post" action="/new-entry")
               label Contacto
-              input(type="text" name="nombre" placeholder="Contacto Ingresado")
+              input(type="text" name="contacto" placeholder="Contacto Ingresado")
               label Contraseña
               input(type="password" name="password")
               button.btn-principal(type="submit" name= "boton" value= "ingresar") Ingresar
               button.btn-principal(type="submit" name= "boton" value= "olvide") Olvide mi Contraseña
         
-        .ventana(name="error" open=mostrar)
-          h1 Debe completar los datos, son obligatorio
-          a(href="/")
-            button.boton-nook(name="boton" value="cerrar") Cerrar
+    dialog#dialog.ventana(name="error")
+      h1#h1-dialog 
+      button#boton-dialog.btn-principal(name="boton" value="cerrar") Cerrar
 
       
     footer.footer
@@ -129,3 +128,7 @@ html(lang="es")
 
     script(type="module" src="/funciones_rutas/inicio.js")
     script(src="https://unpkg.com/leaflet/dist/leaflet.js")
+    script.
+      const estadoModal = "#{modal}";
+      
+    
