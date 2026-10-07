@@ -60,9 +60,23 @@ html(lang="es")
         .comentario
           span.puntos 
           p Aquí irán los comentarios con sus puntuaciones
+          .div-foto-comentario
+            img.foto-comentario(src="img/estadisticas.jpg" alt="Consultoría Empresarial")
+            img.foto-comentario(src="img/pdf.png" alt="Consultoría Empresarial")
+            img.foto-comentario(src="img/procesos.JPG" alt="Consultoría Empresarial")
+            img.foto-comentario(src="img/rowa.JPG" alt="Consultoría Empresarial")
+            img.foto-comentario(src="img/error.png" alt="Consultoría Empresarial")
+            video.foto-comentario(controls controlslist="nodownload noremoteplayback")
+              source(src="img/video.mp4" type="video/mp4")
         .comentario
           span.puntos 
           p Aquí irán los comentarios con sus puntuaciones
+          .div-foto-comentario
+            img.foto-comentario(src="img/estadisticas.jpg" alt="Consultoría Empresarial")
+            img.foto-comentario(src="img/pdf.png" alt="Consultoría Empresarial")
+            img.foto-comentario(src="img/procesos.JPG" alt="Consultoría Empresarial")
+            img.foto-comentario(src="img/rowa.JPG" alt="Consultoría Empresarial")
+            img.foto-comentario(src="img/error.png" alt="Consultoría Empresarial")
         .comentario
           span.puntos ★★★
           p Aquí irán los comentarios con sus puntuaciones
@@ -73,8 +87,8 @@ html(lang="es")
           span.puntos ★★★★★
           p Aquí irán los comentarios con sus puntuaciones
       .botones
-        button#contactar Contactar
-        button#btn-cerrar-info Cerrar
+        button#contactar.btn-principal Contactar
+        button#btn-cerrar-info.btn-principal Cerrar
 
     //Modal con dos pestañas
     .modal
@@ -94,8 +108,8 @@ html(lang="es")
               label Apellido
               input(type="text" name="apellido" placeholder="Apellido")
               label Preferencia de contacto
-              select(name="preferencia" placeholder="Seleccionar")
-                option(value="" disabled selected) Seleccione una opción 
+              select(name="preferenciaContacto" placeholder="Seleccionar")
+                option(value="" ) Seleccione una opción 
                 option(value="email") Correo
                 option(value="whatsapp") WhatsApp
               label Contacto

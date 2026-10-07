@@ -106,15 +106,15 @@ button.favorito {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
-  height: 400px;
-  background: rgba(177, 180, 182, 0.95);
-  color: white;
+  width: 850px;
+  height: 650px;
+  background: rgb(238, 245, 250);
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
   z-index: 9998;
   border-radius: 10px;
+  border: 1px solid rgb(109, 106, 106);
 }
 
 /* Sección superior dividida en dos columnas */
@@ -128,19 +128,20 @@ button.favorito {
 .seccion-izquierda,
 .seccion-derecha {
   flex: 1;
-  background: rgba(177, 180, 182, 0.95);
+  background: rgb(238, 245, 250);
   border-radius: 8px;
 }
 
 /* Sección inferior con botones */
 .modal-inferior {
   display: flex;
-  background: #e5e2e2;
+  /*border: 1px solid #ddd;*/
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  /*border: 1px solid rgb(109, 106, 106);*/
   border-radius: 10px;
 }
 
@@ -152,6 +153,7 @@ button.favorito {
 }
 
 .modal-inferior button {
+  
   background: white;
   color: #004aad;
   border: none;
@@ -162,7 +164,7 @@ button.favorito {
 
 .comentarios {
   text-align: center;
-  margin: 0 0 20px 0;
+  margin: 10px 0 0 0;
   color: #004aad;
 }
 .modal-inferior p {
@@ -172,25 +174,17 @@ button.favorito {
   margin: 0 0 20px 0;
 }
 
-.info button {
-    margin: 10px;
-    background: white;
-    color: #004aad;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 .comentario{
   background: white;
   border-radius: 5px;
   margin: 5px;
+  border: 1px solid #ddd;
 }
 
 .puntos {
   color: gold;
   margin-left: 5px;
+  font-size: 25px;
 }
 
 
@@ -349,11 +343,10 @@ gap: 8px;
 }
 
 .btn-principal {
-margin-top: 15px;
+margin: 10px;
 padding: 12px;
 border: none;
 border-radius: 6px;
-
 background: #007bff;
 color: white;
 cursor: pointer;
@@ -376,4 +369,21 @@ background: #00056b;
   border: none;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.foto-comentario{
+  width: 200px;
+  height: 200px;
+  padding: 3px;
+}
+
+.div-foto-comentario{
+  display: flex;
+  gap: 10px;
+  max-width: 120vh;
+  max-height: 30vh;
+  overflow-x: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
+
 }

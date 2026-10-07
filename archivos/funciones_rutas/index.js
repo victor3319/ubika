@@ -146,15 +146,16 @@ router.post("/new-entry", async (req, res)=>{
 router.post("/registrar", upload.none(), async (req, res)=>{   
     const usuarios = await usuariosDB.find()
     var datos = req.body
-    var validacion = js.validacionUsuario(datos, usuarios);
+    var validacion = js.validarRegistro(datos, usuarios);
     console.log(datos)
     const {nombre, apellido, preferencia, contacto, password} = req.body;
 
     if(validacion == true){
-        res.render("index.pug", {
-                warnnig : js.mostrar(),
-                mensaje : "El registro ya existen"
-            })
+        return res.json({
+            modal : "flex",
+            warning : "open",
+            mensaje : "El registro ya existe, ingrese con su contacto registrado y contraseña"
+        });
     }else if(
         //VALIDADION DE DATOS OBLIGATORIOS
         nombre =="" || 
@@ -168,6 +169,21 @@ router.post("/registrar", upload.none(), async (req, res)=>{
             warning : "open",
             mensaje : "Todos los datos son obligatorios, debe llenarlos"
         });
+    }else{
+
+        //Genera Token de Validación
+        const codigo = js.generarCodigo();
+        console.log(codigo);
+
+        // Crear el Usuario en BD
+        //await usuariosDB.create(datos);
+
+        return res.json({
+            modal : "flex",
+            warning : "open",
+            mensaje : "Registro exitoso"
+        });
+       
     }
     
 })

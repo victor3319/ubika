@@ -21,22 +21,23 @@ formulario.addEventListener("submit", async (e) => {
   e.preventDefault();
   const datos = new FormData(formulario);
   console.log(Object.fromEntries(datos.entries()));
-  try{
-    var respuesta = await fetch("/registrar",{
-      method: "POST",
-      body: datos
-    })
-    
-    var resultado = await respuesta.json()
-    
-      if (resultado.warning === "open") {
-        dialog.showModal();
-        textDialog.textContent = resultado.mensaje
-      }
+    try{
+      var respuesta = await fetch("/registrar",{
+        method: "POST",
+        body: datos
+      })
       
-    }catch{
-      console.error("ERROR:", error);
-    }
+      var resultado = await respuesta.json()
+      
+        if (resultado.warning === "open") {
+          dialog.showModal();
+          textDialog.textContent = resultado.mensaje
+        }
+        
+      }catch{
+        console.error("ERROR:", error);
+      }
+
 })
 
 

@@ -5,6 +5,8 @@ const pdf = require("pdf-parse-new");
 const { response } = require("express");
 const { registerHooks } = require("module");
 const { basename } = require("path");
+const crypto = require("crypto");
+
 
 
 //VALIDACION DE USUARIOS
@@ -19,10 +21,12 @@ function validacionUsuario(datos, usuarios){
     return datosIngreso
 }
 
-function validarRegistro(datos,registros){
-    const existe = registros.some(obj =>
-        obj.contacto === datos.conctacto
+function validarRegistro(datos,usuarios){
+    const existe = usuarios.some(obj =>
+        obj.contacto === datos.contacto
     );
+    
+    
     return existe
 }
 
@@ -224,6 +228,10 @@ function variosTiposDatos(datos){
     return datosDevueltos
 }
 
+//GENERAR CODIGO TOKEN
+function generarCodigo() {
+    return crypto.randomInt(100000, 1000000).toString();
+}
 
 
 
@@ -245,4 +253,6 @@ module.exports = {
     normalizarBody : normalizarBody,
     armadorProcesoSeleccion : armadorProcesoSeleccion,
     variosTiposDatos : variosTiposDatos,
+    validarRegistro : validarRegistro,
+    generarCodigo : generarCodigo,
 }
