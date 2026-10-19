@@ -233,6 +233,22 @@ function generarCodigo() {
     return crypto.randomInt(100000, 1000000).toString();
 }
 
+//ENVIAR CORREO TOKEN
+
+async function enviarToken(email, token, emailEnvio, transporter) {
+  await transporter.sendMail({
+    from: emailEnvio,
+    to: email,
+    subject: "Código de verificación",
+    html: `
+      <h2>Tu código de verificación</h2>
+      <p>El código es:</p>
+      <h1>${token}</h1>
+      <p>Este código expira en 10 minutos.</p>
+    `
+  });
+}
+
 
 
 module.exports = {
@@ -255,4 +271,5 @@ module.exports = {
     variosTiposDatos : variosTiposDatos,
     validarRegistro : validarRegistro,
     generarCodigo : generarCodigo,
+    enviarToken : enviarToken,
 }

@@ -20,6 +20,20 @@ const { ClientEncryption } = require("mongodb");
 const { isArray } = require("util");
 const { abrirModal } = require("./funciones_navegador");
 
+
+//TRASPOTADOR PARA MAILS
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // false para 587
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
+
 //leer pdf
 /*const dataBuffer = fs.readFileSync('./uploads/recibos/archivo-.pdf');
 pdf(dataBuffer).then(function(datos){
@@ -174,6 +188,8 @@ router.post("/registrar", upload.none(), async (req, res)=>{
         //Genera Token de Validación
         const codigo = js.generarCodigo();
         console.log(codigo);
+
+        js.enviarToken(datos.contacto, codigo, process.env.EMAIL_USER, transporter)
 
         // Crear el Usuario en BD
         //await usuariosDB.create(datos);
